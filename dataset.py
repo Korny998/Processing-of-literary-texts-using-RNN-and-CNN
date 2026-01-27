@@ -8,8 +8,8 @@ from navec import Navec
 from tensorflow.keras.preprocessing.text import Tokenizer
 
 from constants import (
-    CLASS_LIST, EMBEDDING_DIM, FILTERS,
-    MAX_WORDS, MAX_SEQ, MIN_LEN_RATIO,
+    EMBEDDING_DIM, FILTERS,
+    MAX_WORDS, MIN_LEN_RATIO,
     PROJECT_DIR, WIN_SIZE, WIN_STEP
 )
 
@@ -31,7 +31,7 @@ if not os.listdir(data_dir):
 class_list = set()
 
 for path in ('./dataset/poems', './dataset/prose'):
-    CLASS_LIST.update(os.listdir(path))
+    class_list.update(os.listdir(path))
 
 all_texts: dict = {}
 
@@ -54,7 +54,7 @@ tokenizer = Tokenizer(
 )
 
 tokenizer.fit_on_texts(all_texts.values())
-seq_train = tokenizer.texts_to_sequences(all_texts.avlues())
+seq_train = tokenizer.texts_to_sequences(all_texts.values())
 
 sizes = np.array([len(seq) for seq in seq_train])
 median = int(np.median(sizes))
@@ -127,3 +127,17 @@ x_x_train, y_train, x_test, y_test = seq_vectorize(
     WIN_SIZE,
     WIN_STEP
 )
+
+
+def load_embedding():
+    word_index = tokenizer.word_index
+    embeddings_index = navec
+
+    embedding_matrix = np.zeros((MAX_WORDS, EMBEDDING_DIM))
+    for word, i in word_index.items():
+        if i < MAX_WORDS:
+            embedding_vector = embeddings_index.get(word)
+            if embedding_vector is not None:
+                embedding_matrix[i] = embedding_vector
+
+    return embedding_matrix

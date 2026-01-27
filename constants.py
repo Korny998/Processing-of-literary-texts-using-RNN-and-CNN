@@ -17,3 +17,7 @@ WIN_STEP: int = 100
 
 # Dataset balancing parameter
 MIN_LEN_RATIO: float = 0.6
+
+# Training
+BATCH_SIZE: int = 128
+EPOCHS: int = 10
