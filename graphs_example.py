@@ -4,7 +4,7 @@ import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
 
 
-def show_confusion_matrix(y_true, y_pred, class_labels):
+def show_confusion_matrix(y_true, y_pred, class_labels) -> None:
     """Display a normalized confusion matrix."""
     cm = confusion_matrix(
         np.argmax(y_true, axis=1),
@@ -26,7 +26,7 @@ def show_confusion_matrix(y_true, y_pred, class_labels):
     plt.show()
 
 
-def show_plot(history):
+def show_plot(history) -> None:
     """Plot training and validation accuracy and loss curves."""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 5))
     fig.suptitle('Graph of the model learning process')
