@@ -33,9 +33,12 @@ class Trainer:
                 break
 
     def train(
-        self, build_fn,
-        x_train, y_train,
-        x_val, y_val
+        self,
+        build_fn,
+        x_train,
+        y_train,
+        x_val,
+        y_val
     ) -> Tuple[Model, History]:
         """Build, compile and train a model."""
         model = build_fn()
